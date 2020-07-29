@@ -27,7 +27,6 @@ struct ContentView: View {
                 ButtonView(timer: timer)
                 Spacer()
                 LogOutButton()
-                //LogOutButton(isRegistered: $userManager.user.isRegistered, userName: $userManager.user.name)
             }
         }
     }
@@ -52,6 +51,7 @@ struct LogOutButton: View {
 extension LogOutButton {
     func logoutUser() {
         user.isRegistered = false
+        user.name = ""
         DataManager.shared.deleteUser()
     }
 }

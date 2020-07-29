@@ -9,19 +9,18 @@
 import SwiftUI
 
 struct RegisterView: View {
-    @State private var name = ""
     @EnvironmentObject var user: UserManager
     
     var body: some View {
         VStack {
             HStack {
                 TextField("Enter your name...",
-                          text: $name,
+                          text: $user.name,
                           onCommit: registerUser)
                     .multilineTextAlignment(.center)
                     .font(.title)
-                Text("\(name.count)")
-                    .foregroundColor(name.count > 2 ? .blue : .red)
+                Text("\(user.name.count)")
+                    .foregroundColor(user.name.count > 2 ? .blue : .red)
                    
             }
             
@@ -32,7 +31,7 @@ struct RegisterView: View {
                         .font(.largeTitle)
                 }
             }
-            .disabled(name.count > 2 ? false : true)
+            .disabled(user.name.count > 2 ? false : true)
         
         }
         .padding()
@@ -41,10 +40,9 @@ struct RegisterView: View {
 
 extension RegisterView {
     private func registerUser() {
-        if name.count > 2 {
-            user.name = name
+        if user.name.count > 2 {
             user.isRegistered = true
-            DataManager.shared.saveUser(with: name)
+            DataManager.shared.saveUser(with: user.name)
         }
     }
 }

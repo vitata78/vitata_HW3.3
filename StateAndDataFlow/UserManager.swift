@@ -5,12 +5,11 @@
 //  Created by Alexey Efimov on 27.07.2020.
 //  Copyright © 2020 Alexey Efimov. All rights reserved.
 //
-
 import Combine
 
 final class UserManager: ObservableObject {
     @Published var isRegistered = false
-    var name = ""
+    @Published var name = ""
     
     init(){}
     
